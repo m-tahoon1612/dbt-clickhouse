@@ -3,6 +3,7 @@
 #### Improvements
 * `dbt-core` is now capped at `<2.0`, and `dbt-common` and `agate` are declared as direct dependencies, matching dbt-labs adapters ([#776](https://github.com/ClickHouse/dbt-clickhouse/pull/776)).
 * `persist_docs` now warns about columns documented in the schema yml that do not exist in the relation, as dbt-core's default `persist_docs` does; such columns are still skipped. Requires `dbt-adapters>=1.22.10` ([#XXX](https://github.com/ClickHouse/dbt-clickhouse/pull/XXX)).
+* The macro tree is now shared byte for byte with the dbt Core 2.0 adapter: `adapter.should_on_cluster()` accepts a `relation=` argument, `clickhouse__get_columns_in_query` reads the column names through `adapter.get_column_schema_from_query`, and `clickhouse__check_schema_exists` exists for engines that dispatch it. No behaviour change on dbt Core 1.x ([#XXX](https://github.com/ClickHouse/dbt-clickhouse/pull/XXX)).
 
 #### Repository maintenance
 * The shard-local table name of distributed materializations is now resolved in one place, `clickhouse_local_relation`, instead of being rebuilt inline in each materialization and incremental strategy ([#753](https://github.com/ClickHouse/dbt-clickhouse/pull/753)).
